@@ -40,6 +40,7 @@ public class AbstractPage {
 		return driver.getCurrentUrl();
 	}
 
+	
 	public String getCurrentPageSource(WebDriver driver) {
 		return driver.getPageSource();
 	}
