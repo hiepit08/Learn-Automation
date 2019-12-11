@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MMS_BACKEND" parallel="false">
+	<listeners>
+		<listener class-name="org.uncommons.reportng.HTMLReporter" />
+		<listener
+			class-name="org.uncommons.reportng.JUnitXMLReporter" />
+	</listeners>
+
+
+	<test name="Run test case on Chrome">
+		<parameter name="browser" value="chrome" />
+		<parameter name="version" value="77.0.3865.40" />
+		<parameter name="url" value="http://demo.guru99.com/v4/" />
+
+
+		<classes>
+
+			<class name="guru.valication.CaseValicationCustomer" />
+			<class name="guru.follow.FollowGuruAccount" />
+
+		</classes>
+
+	</test>
+
+
+
+
+</suite> 
+
+
