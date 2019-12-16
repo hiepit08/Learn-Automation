@@ -3,6 +3,8 @@ package guru.payment;
 import javax.lang.model.element.Element;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -53,7 +55,6 @@ public class PaymentGuruAccount extends AbstractTest {
 	private int currentBalance;
 	private int currentBalanceTransfer;
 	private int currentBalanceWithdraw;
-	
 
 	@Parameters({ "browser", "version", "url" })
 	@BeforeTest
@@ -78,7 +79,7 @@ public class PaymentGuruAccount extends AbstractTest {
 		log.info("TC_01_Step: Lay thong tin account");
 		userID = newCus.getDynamicText(driver, "User ID :");
 		pass = newCus.getDynamicText(driver, "Password :");
-		
+
 		newCus.openURL(driver, urlCurrent);
 
 		log.info("TC_01_Step: Nhap account");
@@ -99,6 +100,11 @@ public class PaymentGuruAccount extends AbstractTest {
 		log.info("TC_02_Step: Nhap name");
 		newCus.senkeyDynamicToTextAndButton(driver, LoginData.NAME, "name");
 
+		log.info("TC_02_Step: remove date");
+		WebElement date = driver.findElement(By.xpath("//input[@name='dob']"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].removeAttribute('type');", date);
+		
 		log.info("TC_02_Step: Nhap ngay sinh");
 		newCus.senkeyDynamicToTextAndButton(driver, LoginData.BIRTH, "dob");
 
@@ -197,41 +203,40 @@ public class PaymentGuruAccount extends AbstractTest {
 	public void TC_04_addAccount() throws InterruptedException {
 		newAcc = PageFactoryManager.getNewAccountPageObject(driver);
 
-		for (int i=0; i<3; i++)
-		{
-		log.info("TC_04_Step: Click new account");
-		newAcc.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "New Account");
+		for (int i = 0; i < 3; i++) {
+			log.info("TC_04_Step: Click new account");
+			newAcc.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "New Account");
 
-		log.info("TC_04_Step: input customerID");
-		newAcc.senkeyDynamicToTextAndButton(driver, CustomerID, "cusid");
+			log.info("TC_04_Step: input customerID");
+			newAcc.senkeyDynamicToTextAndButton(driver, CustomerID, "cusid");
 
-		log.info("TC_04_Step: Chon Account type ");
-		newAcc.clickDynamicOption(driver, DynamicUIs.DYNAMIC_OPTION, "Savings");
+			log.info("TC_04_Step: Chon Account type ");
+			newAcc.clickDynamicOption(driver, DynamicUIs.DYNAMIC_OPTION, "Savings");
 
-		log.info("TC_04_Step: Chon Initial deposit");
-		newAcc.senkeyDynamicToTextAndButton(driver, AccountData.INITIAL, "inideposit");
+			log.info("TC_04_Step: Chon Initial deposit");
+			newAcc.senkeyDynamicToTextAndButton(driver, AccountData.INITIAL, "inideposit");
 
-		log.info("TC_04_Step: Click submit");
-		newAcc.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "button2");
-		
-		log.info("TC_04_Step: verify mesage");
-		verifyTrue(newAcc.isDynamicMessage(driver, Message.ACCOUNT_SUCCESS));
+			log.info("TC_04_Step: Click submit");
+			newAcc.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "button2");
 
-		log.info("TC_04_Step: get AccountID");
-		AccountID = newAcc.getDynamicText(driver, "Account ID");
+			log.info("TC_04_Step: verify mesage");
+			verifyTrue(newAcc.isDynamicMessage(driver, Message.ACCOUNT_SUCCESS));
 
-		log.info("TC_04_Step: verify CusID");
-		verifyEquals(newAcc.getDynamicText(driver, "Customer ID"), CustomerID);
+			log.info("TC_04_Step: get AccountID");
+			AccountID = newAcc.getDynamicText(driver, "Account ID");
 
-		log.info("TC_4_Step: verify account type");
-		verifyEquals(newAcc.getDynamicText(driver, "Account Type"), "Savings");
+			log.info("TC_04_Step: verify CusID");
+			verifyEquals(newAcc.getDynamicText(driver, "Customer ID"), CustomerID);
 
-		log.info("TC_04_Step: verify Current Amount");
-		verifyEquals(newAcc.getDynamicText(driver, "Current Amount"), AccountData.INITIAL);
+			log.info("TC_4_Step: verify account type");
+			verifyEquals(newAcc.getDynamicText(driver, "Account Type"), "Savings");
 
-		log.info("TC_04_Step: chuyen kieu du lieu string -> int bien INITIAL");
-		verifyEquals(newAcc.getDynamicText(driver, "Current Amount"), AccountData.INITIAL);
-		initial = Integer.parseInt(AccountData.INITIAL);
+			log.info("TC_04_Step: verify Current Amount");
+			verifyEquals(newAcc.getDynamicText(driver, "Current Amount"), AccountData.INITIAL);
+
+			log.info("TC_04_Step: chuyen kieu du lieu string -> int bien INITIAL");
+			verifyEquals(newAcc.getDynamicText(driver, "Current Amount"), AccountData.INITIAL);
+			initial = Integer.parseInt(AccountData.INITIAL);
 		}
 	}
 
@@ -341,13 +346,13 @@ public class PaymentGuruAccount extends AbstractTest {
 	public void TC_08_transferOtherAccount() throws InterruptedException {
 		fundTransfer = PageFactoryManager.getFundTransferPageObject(driver);
 
-		log.info("TC_08_Step: convert AccountID int");		
+		log.info("TC_08_Step: convert AccountID int");
 		int AccountIDInt = Integer.parseInt(AccountID);
-		
-		log.info("TC_08_Step: get accountID other");	
-		int AccountID_otherString = AccountIDInt -1;
+
+		log.info("TC_08_Step: get accountID other");
+		int AccountID_otherString = AccountIDInt - 1;
 		AccountID_Other = Integer.toString(AccountID_otherString);
-		
+
 		log.info("TC_08_Step: Fund Transfer");
 		fundTransfer.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "Fund Transfer");
 
@@ -355,7 +360,7 @@ public class PaymentGuruAccount extends AbstractTest {
 		fundTransfer.senkeyDynamicToTextAndButton(driver, AccountID, "payersaccount");
 
 		log.info("TC_08_Step: Input accountID");
-		fundTransfer.senkeyDynamicToTextAndButton(driver,AccountID_Other, "payeeaccount");
+		fundTransfer.senkeyDynamicToTextAndButton(driver, AccountID_Other, "payeeaccount");
 
 		log.info("TC_08_Step: Input amount");
 		fundTransfer.senkeyDynamicToTextAndButton(driver, AccountData.TRANSFER_OTHER, "ammount");
@@ -376,7 +381,7 @@ public class PaymentGuruAccount extends AbstractTest {
 
 		log.info("TC_09_Step: Input accountID");
 		fundTransfer.senkeyDynamicToTextAndButton(driver, AccountID, "accountno");
-		
+
 		log.info("TC_09_Step: click button submit");
 		fundTransfer.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "AccSubmit");
 
@@ -398,36 +403,35 @@ public class PaymentGuruAccount extends AbstractTest {
 	public void TC_10_deleteAllAccount() {
 		deleteAcc = PageFactoryManager.getDeleteAccountPageOject(driver);
 
-		for (int i=0; i<3; i++)
-		{
-		log.info("TC_10_Step: Click delete account");
-		deleteAcc.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "Delete Account");
+		for (int i = 0; i < 3; i++) {
+			log.info("TC_10_Step: Click delete account");
+			deleteAcc.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "Delete Account");
 
-		log.info("TC_010_Step: input accountID");
-		deleteAcc.senkeyDynamicToTextAndButton(driver, AccountID, "accountno");
+			log.info("TC_010_Step: input accountID");
+			deleteAcc.senkeyDynamicToTextAndButton(driver, AccountID, "accountno");
 
-		log.info("TC_10_Step: Click submit");
-		deleteAcc.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "AccSubmit");
+			log.info("TC_10_Step: Click submit");
+			deleteAcc.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "AccSubmit");
 
-		log.info("TC_10_Step: Khai bao bien alert");
-		Alert alert = driver.switchTo().alert();
+			log.info("TC_10_Step: Khai bao bien alert");
+			Alert alert = driver.switchTo().alert();
 
-		log.info("TC_10_Step: Click accept javascript");
-		alert.accept();
-		alert.accept();
+			log.info("TC_10_Step: Click accept javascript");
+			alert.accept();
+			alert.accept();
 
-		log.info("TC_10_Step: Click edit account");
-		deleteAcc.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "Edit Account");
+			log.info("TC_10_Step: Click edit account");
+			deleteAcc.clickDynamicPage(driver, DynamicUIs.DYNAMIC_PAGE, "Edit Account");
 
-		log.info("TC_10_Step: Input accountID");
-		deleteAcc.senkeyDynamicToTextAndButton(driver, AccountID, "accountno");
+			log.info("TC_10_Step: Input accountID");
+			deleteAcc.senkeyDynamicToTextAndButton(driver, AccountID, "accountno");
 
-		log.info("TC_10_Step: click button submit");
-		deleteAcc.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "AccSubmit");
+			log.info("TC_10_Step: click button submit");
+			deleteAcc.clickDynamicButton(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, "AccSubmit");
 
-		String notExist = alert.getText();
-		verifyEquals(notExist, "Account does not exist");
-		alert.accept();
+			String notExist = alert.getText();
+			verifyEquals(notExist, "Account does not exist");
+			alert.accept();
 		}
 	}
 
@@ -464,7 +468,7 @@ public class PaymentGuruAccount extends AbstractTest {
 
 	@AfterTest(alwaysRun = true)
 	public void afterTest() {
-	closeBrowserAndriver(driver);
+		closeBrowserAndriver(driver);
 	}
 
 }

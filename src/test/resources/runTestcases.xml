@@ -8,9 +8,14 @@
 	</listeners>
 
 
-<test name="Run test case on Chrome"> 
+<!-- <test name="Run test case on Chrome"> 
 			<parameter name="browser" value="chrome" />
 		<parameter name="version" value="79.0.3945.36"/>
+		<parameter name="url" value="http://demo.guru99.com/v4/" /> -->
+		
+		<test name="Run test case on Firefox"> 
+			<parameter name="browser" value="firefox" />
+		<parameter name="version" value="0.26.0"/>
 		<parameter name="url" value="http://demo.guru99.com/v4/" />
 		
 		<classes>
