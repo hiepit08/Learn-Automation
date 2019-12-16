@@ -6,8 +6,8 @@ import commons.AbstractPage;
 import objectUIs.DynamicUIs;
 
 
-public class ValicationPageOject extends AbstractPage {
-	public ValicationPageOject(WebDriver mappingDriver) {
+public class DeleteCustomerPageOject extends AbstractPage {
+	public DeleteCustomerPageOject(WebDriver mappingDriver) {
 		driver = mappingDriver;
 	}
 

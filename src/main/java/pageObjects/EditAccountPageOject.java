@@ -6,8 +6,8 @@ import commons.AbstractPage;
 import objectUIs.DynamicUIs;
 
 
-public class AccountPageOject extends AbstractPage {
-	public AccountPageOject(WebDriver mappingDriver) {
+public class EditAccountPageOject extends AbstractPage {
+	public EditAccountPageOject(WebDriver mappingDriver) {
 		driver = mappingDriver;
 	}
 

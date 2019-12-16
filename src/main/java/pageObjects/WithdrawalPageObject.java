@@ -6,8 +6,8 @@ import commons.AbstractPage;
 import objectUIs.DynamicUIs;
 
 
-public class CustomerPageObject extends AbstractPage {
-	public CustomerPageObject(WebDriver mappingDriver) {
+public class WithdrawalPageObject extends AbstractPage {
+	public WithdrawalPageObject(WebDriver mappingDriver) {
 		driver = mappingDriver;
 	}
 

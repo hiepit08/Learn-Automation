@@ -8,16 +8,15 @@
 	</listeners>
 
 
-	<test name="Run test case on Chrome">
-		<parameter name="browser" value="chrome" />
-		<parameter name="version" value="77.0.3865.40" />
+<test name="Run test case on Chrome"> 
+			<parameter name="browser" value="chrome" />
+		<parameter name="version" value="79.0.3945.36"/>
 		<parameter name="url" value="http://demo.guru99.com/v4/" />
-
-
+		
 		<classes>
 
-			<class name="guru.valication.CaseValicationCustomer" />
-			<class name="guru.follow.FollowGuruAccount" />
+			<!-- <class name="guru.valication.CaseValicationCustomer" /> -->
+			<class name="guru.payment.PaymentGuruAccount" />
 
 		</classes>
 

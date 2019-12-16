@@ -821,24 +821,29 @@ public class AbstractPage {
 
 	}
 	
-	public void senkeyDynamicText(WebDriver driver, String value, String dynamicName) {
-		clearInputText(driver, DynamicUIs.DYNAMIC_TEXT_BUTTON, dynamicName);
-		waitForElementVisible(driver,DynamicUIs.DYNAMIC_TEXT_BUTTON, dynamicName);
-		sendKeyToElement(driver, DynamicUIs.DYNAMIC_TEXT_BUTTON, value ,dynamicName);
+	public void senkeyDynamicToTextAndButton(WebDriver driver, String value, String dynamicName) {
+		clearInputText(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, dynamicName);
+		waitForElementVisible(driver,DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, dynamicName);
+		sendKeyToElement(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, value ,dynamicName);
 	}
 
 	
-	public void senkeyDynamicArea(WebDriver driver, String value, String dynamicName) {
+	public void senkeyDynamicToArea(WebDriver driver, String value, String dynamicName) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_AREA, dynamicName);
 		sendKeyToElement(driver, DynamicUIs.DYNAMIC_AREA, value,dynamicName);
 	}
 	
-	public void clickDynamicButton(WebDriver driver, String locator, String... dynamicName) {
-		waitForElementVisible(driver,DynamicUIs.DYNAMIC_TEXT_BUTTON, dynamicName);
-		clickToElement(driver, DynamicUIs.DYNAMIC_TEXT_BUTTON, dynamicName);
+	public void clickDynamicButton(WebDriver driver, String locator, String dynamicName) {
+		waitForElementVisible(driver,DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, dynamicName);
+		clickToElement(driver, DynamicUIs.DYNAMIC_INPUT_BOX_AND_BUTTON, dynamicName);
 	}
 	
-	public void clickDynamicButtonCancel(WebDriver driver, String locator, String... dynamicId) {
+	public void clickDynamicToLink(WebDriver driver, String locator, String dynamicText) {
+		waitForElementVisible(driver,DynamicUIs.DYNAMIC_CLICK, dynamicText);
+		clickToElement(driver, DynamicUIs.DYNAMIC_CLICK, dynamicText);
+	}
+	
+	public void clickDynamicButtonCancel(WebDriver driver, String locator, String dynamicId) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_CANCEL, dynamicId);
 		clickToElement(driver, DynamicUIs.DYNAMIC_CANCEL, dynamicId);
 	}
@@ -855,27 +860,27 @@ public class AbstractPage {
 	
 
 	
-	public void openURL(WebDriver driver, String locator, String... dynamicText) {
+	public void openURL(WebDriver driver, String locator, String dynamicText) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_LABLE, dynamicText);
 		 clickToElement(driver, DynamicUIs.DYNAMIC_LABLE, dynamicText);
 	}
 	
-	public void clickDynamicRadio(WebDriver driver, String locator, String... dynamicvalue) {
+	public void clickDynamicRadio(WebDriver driver, String locator, String dynamicvalue) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_RADIO, dynamicvalue);
 		clickToElement(driver, DynamicUIs.DYNAMIC_RADIO, dynamicvalue);
 	}
 	
-	public void clickDynamicPage(WebDriver driver, String locator, String... dynamicText) {
+	public void clickDynamicPage(WebDriver driver, String locator, String dynamicText) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_PAGE, dynamicText);
 		clickToElement(driver, DynamicUIs.DYNAMIC_PAGE, dynamicText);
 	}
 	
-	public void clickDynamicOption(WebDriver driver, String locator, String... dynamicText) {
+	public void clickDynamicOption(WebDriver driver, String locator, String dynamicText) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_OPTION, dynamicText);
 		clickToElement(driver, DynamicUIs.DYNAMIC_OPTION, dynamicText);
 	}
 	
-	public boolean isDynamicMessage(WebDriver driver,  String... dynamicText) {
+	public boolean isDynamicMessage(WebDriver driver,  String dynamicText) {
 		waitForElementVisible(driver,DynamicUIs.DYNAMIC_MESSAGE_SUCCESS, dynamicText);
 		return isControlDisplayed(driver, DynamicUIs.DYNAMIC_MESSAGE_SUCCESS, dynamicText);
 	}

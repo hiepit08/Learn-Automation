@@ -1,4 +1,4 @@
-package objectUIs;
+package guru.data;
 
 public class Message {
 	public static final String CREATE_SUCCESS = "Customer Registered Successfully!!!";

@@ -1,0 +1,11 @@
+1576468464166	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-foreground" "-no-remote" "-profile" "C:\\Users\\hieppt\\AppData\\Local\\Temp\\rust_mozprofile0AKohu"
+1576468464527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: mozillaAddons
+1576468464527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: telemetry
+1576468464527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: resource://pdf.js/
+1576468464527	addons.webextension.screenshots@mozilla.org	WARN	Loading extension 'screenshots@mozilla.org': Reading manifest: Invalid extension permission: about:reader*
+JavaScript error: resource://gre/modules/XULStore.jsm, line 66: Error: Can't find profile directory.
+1576468465957	Marionette	INFO	Listening on port 49938
+1576468466179	Marionette	WARN	TLS certificate errors will be ignored for this session
+JavaScript error: http://demo.guru99.com/v4/index.php, line 1: SyntaxError: missing ) after argument list
+JavaScript error: http://demo.guru99.com/v4/manager/EditCustomer.php, line 1: TypeError: document.fbal.txtaccno is undefined
+JavaScript error: http://demo.guru99.com/v4/manager/editAccount.php, line 1: TypeError: document.fbal.txtaccno is undefined
